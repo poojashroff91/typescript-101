@@ -34,14 +34,21 @@
 * Generics *preserve* the types that go in and out of functions so they are better than using the *any*     datatype
 
 ## Namespaces
+* Organize Application with JS Objects
+* Can be split over multiple files
+* No module loader required
+* Dependencies get difficult to manage in bigger applications
 
 ## Modules
+* Organize Application with real modules.
 * We can have different files and need to import these into our current file
 * We need a module loader to bundle all JS files together
-* SystemJs is a module loader.
+* Explicit declaration makes managing dependencies easy
+* Better for large/medium applications
+* SystemJs is a module loader
 * Run systemjs `npm install systemjs --save` 
 * Check https://github.com/systemjs/systemjs for code snippet on importing systemjs
-* Tell SystemJs what the base extension is.
+* Tell SystemJs what the base URL and default extension is.
 * `<script>
         SystemJS.config({
             baseURL: '/',
@@ -53,3 +60,10 @@
         });
         SystemJS.import('main.js');
     </script>`
+
+
+## Import and Export
+* Import paths are relative or absolute, TypeScript figures out smartly what path you're using
+* See comments for import statements in main.ts 
+
+## Using third party libraries.

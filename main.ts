@@ -1,4 +1,5 @@
-import { PI, calcCircumference} from './math/circle';
+import { PI, calcCircumference} from './math/circle'; // import * as Circle from './math/circle';
+import calc from "./math/rectangle"; 
 
 console.log("Hi there");
 var burger: string = "hamburger",
@@ -91,5 +92,6 @@ console.log(typeof arrayFromNumber[0]);
 
 
 /*Modules*/
-console.log(PI);
+console.log(PI); //console.log(Circle.PI);
 console.log(calcCircumference(10));
+console.log(calc(10, 20));
