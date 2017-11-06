@@ -9,6 +9,8 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+Object.defineProperty(exports, "__esModule", { value: true });
+var circle_1 = require("./math/circle");
 console.log("Hi there");
 var burger = "hamburger", calories = 300, tasty = true; //Change this to a string and see what happens
 function speak(food, energy) {
@@ -70,3 +72,6 @@ console.log(typeof arrayFromString[0]);
 var arrayFromNumber = genericFunc(42); //Inferred type
 console.log(arrayFromNumber[0]);
 console.log(typeof arrayFromNumber[0]);
+/*Modules*/
+console.log(circle_1.PI);
+console.log(circle_1.calcCircumference(10));

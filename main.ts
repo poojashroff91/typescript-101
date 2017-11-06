@@ -1,3 +1,5 @@
+import { PI, calcCircumference} from './math/circle';
+
 console.log("Hi there");
 var burger: string = "hamburger",
   calories: number = 300,
@@ -86,3 +88,8 @@ console.log(typeof arrayFromString[0]);
 var arrayFromNumber = genericFunc(42);  //Inferred type
 console.log(arrayFromNumber[0]);
 console.log(typeof arrayFromNumber[0]);
+
+
+/*Modules*/
+console.log(PI);
+console.log(calcCircumference(10));
