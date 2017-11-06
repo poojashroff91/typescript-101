@@ -68,7 +68,14 @@
 
 ## Using third party libraries.
 * One way to do this is to install the library and use map in SystemJs to import the script from node_modules/
+* Install jquery `npm install jquery --save`
+* Change the SystemJs config (map)
 * This is not ideal as it still shows compile errors.
 * A better way is to use declaration files, these help translate TS into JS.
 * Install typings `npm install -g typings`
-* Use `typings install dt~jquery --global --save`
+* Use `typings install dt~jquery --global --save` 
+* Global flag will add jQuery to all the files.
+
+##Typings 2.0 alternative to Typings.
+* Built in typings management.
+* `npm install --save-dev @types/jquery`
