@@ -7,8 +7,17 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>My TypeScript Tutorial</title>
     <script src="node_modules/systemjs/dist/system.js"></script>
+</head>
+
+<body>
+    <div id="app-id">Change this div with jquery</div>
+
     <script>
         SystemJS.config({
+            map: {
+                "jQuery": "node_modules/jquery/dist/jquery.min.js"
+            },
+            
             baseURL: '/',
             packages: {
                 '/': {
@@ -17,11 +26,8 @@
             }
         });
         SystemJS.import('main.js');
+
     </script>
-</head>
-
-<body>
-
 </body>
 
 </html>

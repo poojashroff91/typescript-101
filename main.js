@@ -12,6 +12,7 @@ var __extends = (this && this.__extends) || (function () {
 Object.defineProperty(exports, "__esModule", { value: true });
 var circle_1 = require("./math/circle"); // import * as Circle from './math/circle';
 var rectangle_1 = require("./math/rectangle");
+require("jQuery");
 console.log("Hi there");
 var burger = "hamburger", calories = 300, tasty = true; //Change this to a string and see what happens
 function speak(food, energy) {
@@ -77,3 +78,4 @@ console.log(typeof arrayFromNumber[0]);
 console.log(circle_1.PI); //console.log(Circle.PI);
 console.log(circle_1.calcCircumference(10));
 console.log(rectangle_1.default(10, 20));
+$("#app-id").css({ "background-color": "lightblue" });
