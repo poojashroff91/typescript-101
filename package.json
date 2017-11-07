@@ -10,7 +10,6 @@
   "author": "Pooja Shroff",
   "license": "ISC",
   "devDependencies": {
-    "@types/jquery": "^3.2.16",
     "lite-server": "^2.3.0"
   },
   "dependencies": {
