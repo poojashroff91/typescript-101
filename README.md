@@ -79,3 +79,10 @@
 ##Typings 2.0 alternative to Typings.
 * Built in typings management.
 * `npm install --save-dev @types/jquery`
+
+##ES6
+* Rest and Spread
+* Fat arrows
+* let and const
+* destructuring arrays and objects
+* template literals

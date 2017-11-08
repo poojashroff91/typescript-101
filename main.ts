@@ -198,3 +198,90 @@ console.log(myName, myAge);
 const username = "Pooja";
 const greeting = `Hi I am ${username} I am so cool!`;
 console.log(greeting);
+
+// Exercise 1 - Maybe use an Arrow Function?
+const double = (value: number) => value * 2;
+console.log(double(10));
+ 
+// Exercise 2 - If only we could provide some default values...
+const greet2 = (name: string = "Max") => console.log("Hello, " + name);
+greet2();
+greet2("Anna");
+ 
+// Exercise 3 - Isn't there a shorter way to get all these Values?
+const numbers2: number[] = [-3, 33, 38, 5];
+console.log(Math.min(...numbers2));
+ 
+// Exercise 4 - I have to think about Exercise 3 ...
+const newArray = [55, 20];
+newArray.push(...numbers);
+console.log(newArray);
+ 
+// Exercise 5 - That's a well-constructed array.
+const testResults = [3.89, 2.99, 1.38];
+const [result1, result2, result3] = testResults;
+console.log(result1, result2, result3);
+ 
+// Exercise 6 - And a well-constructed object!
+const scientist = {firstName: "Will", experience: 12};
+const {firstName, experience} = scientist;
+console.log(firstName, experience);
+
+
+// Exercise 1 - How was your TypeScript Class?
+class Car {
+    name: string;
+    acceleration: number = 0;
+
+    constructor(name: string){
+      this.name = name;
+    }
+ 
+    honk = () => console.log("Toooooooooot!");
+    accelerate = (speed: number) => this.acceleration = this.acceleration + speed;
+    
+}
+const car = new Car("BMW");
+car.honk();
+console.log(car.acceleration);
+car.accelerate(10);
+console.log(car.acceleration);
+ 
+// Exercise 2 - Two objects, based on each other ...
+class baseObject {
+    width: number = 0;
+    length: number = 0;
+};
+
+class Rectangle extends baseObject {
+    calcSize = () => this.width * this.length;
+};
+
+const rectangle = new Rectangle();
+rectangle.width = 5;
+rectangle.length = 2;
+console.log(rectangle.calcSize());
+ 
+// Exercise 3 - Make sure to compile to ES5 (set the target in tsconfig.json)
+class Person  {
+    private _firstName: string = "";
+
+    get firstName(){
+      return this._firstName;
+    }
+    
+    set firstName(value: string){
+      if (value.length > 3) {
+            this._firstName = value;
+        }
+        else {
+            this._firstName = "";
+        }
+    }
+};
+const person = new Person();
+console.log(person.firstName); //Default blank
+person.firstName = "Ma"; //Blank
+console.log(person.firstName);
+person.firstName = "Maximilian";
+console.log(person.firstName);
