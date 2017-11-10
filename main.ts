@@ -178,19 +178,20 @@ countdown();
 const numbers = [2, 3, 10, -1];
 console.log(Math.max(...numbers)); //Basically all array elements are spread to individual parameters
 
-function makeArray(name: string, ...args: number[]) { //unknown number of params.
+function makeArray(name: string, ...args: number[]) {
+  //unknown number of params.
   return args;
 }
 
-console.log(makeArray("Max", 2,4,6));
+console.log(makeArray("Max", 2, 4, 6));
 
 console.log("Destructuring");
 const hobbies = ["Cooking", "Sports"];
-const[ hobby1, hobby2] = hobbies;
-console.log(hobby1, hobby2)
+const [hobby1, hobby2] = hobbies;
+console.log(hobby1, hobby2);
 
-const userData = {username: "Pooja", age: 27};
-const {username: myName, age:myAge} =  userData;
+const userData = { username: "Pooja", age: 27 };
+const { username: myName, age: myAge } = userData;
 console.log(myName, myAge);
 
 //Template Literals
@@ -202,86 +203,207 @@ console.log(greeting);
 // Exercise 1 - Maybe use an Arrow Function?
 const double = (value: number) => value * 2;
 console.log(double(10));
- 
+
 // Exercise 2 - If only we could provide some default values...
 const greet2 = (name: string = "Max") => console.log("Hello, " + name);
 greet2();
 greet2("Anna");
- 
+
 // Exercise 3 - Isn't there a shorter way to get all these Values?
 const numbers2: number[] = [-3, 33, 38, 5];
 console.log(Math.min(...numbers2));
- 
+
 // Exercise 4 - I have to think about Exercise 3 ...
 const newArray = [55, 20];
 newArray.push(...numbers);
 console.log(newArray);
- 
+
 // Exercise 5 - That's a well-constructed array.
 const testResults = [3.89, 2.99, 1.38];
 const [result1, result2, result3] = testResults;
 console.log(result1, result2, result3);
- 
-// Exercise 6 - And a well-constructed object!
-const scientist = {firstName: "Will", experience: 12};
-const {firstName, experience} = scientist;
-console.log(firstName, experience);
 
+// Exercise 6 - And a well-constructed object!
+const scientist = { firstName: "Will", experience: 12 };
+const { firstName, experience } = scientist;
+console.log(firstName, experience);
 
 // Exercise 1 - How was your TypeScript Class?
 class Car {
-    name: string;
-    acceleration: number = 0;
+  name: string;
+  acceleration: number = 0;
 
-    constructor(name: string){
-      this.name = name;
-    }
- 
-    honk = () => console.log("Toooooooooot!");
-    accelerate = (speed: number) => this.acceleration = this.acceleration + speed;
-    
+  constructor(name: string) {
+    this.name = name;
+  }
+
+  honk = () => console.log("Toooooooooot!");
+  accelerate = (speed: number) =>
+    (this.acceleration = this.acceleration + speed);
 }
 const car = new Car("BMW");
 car.honk();
 console.log(car.acceleration);
 car.accelerate(10);
 console.log(car.acceleration);
- 
+
 // Exercise 2 - Two objects, based on each other ...
 class baseObject {
-    width: number = 0;
-    length: number = 0;
-};
+  width: number = 0;
+  length: number = 0;
+}
 
 class Rectangle extends baseObject {
-    calcSize = () => this.width * this.length;
-};
+  calcSize = () => this.width * this.length;
+}
 
 const rectangle = new Rectangle();
 rectangle.width = 5;
 rectangle.length = 2;
 console.log(rectangle.calcSize());
- 
-// Exercise 3 - Make sure to compile to ES5 (set the target in tsconfig.json)
-class Person  {
-    private _firstName: string = "";
 
-    get firstName(){
-      return this._firstName;
+// Exercise 3 - Make sure to compile to ES5 (set the target in tsconfig.json)
+class Person {
+  private _firstName: string = "";
+
+  get firstName() {
+    return this._firstName;
+  }
+
+  set firstName(value: string) {
+    if (value.length > 3) {
+      this._firstName = value;
+    } else {
+      this._firstName = "";
     }
-    
-    set firstName(value: string){
-      if (value.length > 3) {
-            this._firstName = value;
-        }
-        else {
-            this._firstName = "";
-        }
-    }
-};
+  }
+}
 const person = new Person();
 console.log(person.firstName); //Default blank
 person.firstName = "Ma"; //Blank
 console.log(person.firstName);
 person.firstName = "Maximilian";
 console.log(person.firstName);
+
+interface NamedPerson {
+  firstName: string;
+  age?: number;
+  [propName: string]: any;
+  greetPerson(lastName: string): void;
+}
+
+function greetPerson(person: NamedPerson) {
+  console.log("Hello, " + person.firstName);
+}
+
+function changeName(person: NamedPerson) {
+  person.firstName = "Anna";
+}
+
+const personArg = {
+  firstName: "Pooja",
+  hobbies: ["Cooking", "Sports"],
+  greetPerson(lastName: string) {
+    console.log("Hi, I am " + this.firstName + " " + lastName);
+  }
+};
+
+changeName(personArg);
+greetPerson(personArg);
+personArg.greetPerson("Anything");
+
+//function types
+interface DoubleValueFunc {
+  (number1: number, number2: number): number;
+}
+
+let myDoubleFunction: DoubleValueFunc;
+myDoubleFunction = function(value1: number, value2: number) {
+  return (value1 + value2) * 2;
+};
+
+console.log(myDoubleFunction(10, 20));
+
+interface AgedPerson extends NamedPerson {
+  age: number;
+}
+
+const oldPerson: AgedPerson = {
+  age: 27,
+  firstName: "Max",
+  greetPerson(lastName: string) {
+    console.log("Hello!");
+  }
+};
+
+function trimAndLower(text: string | null | undefined) {
+  if (!text) {
+    //this works for blank strings too
+    return text;
+  }
+  return text.trim().toLowerCase();
+}
+console.log("Trimmed to", trimAndLower(null));
+console.log("Trimmed to", trimAndLower(""));
+console.log("Trimmed to", trimAndLower("Hello guys "));
+
+const container = document.getElementById("app-id")!; //Non null assertion. Assume that the call will not be null or undefined.
+container.remove(); //This is risky because of the non null assertion.
+
+let foo: number | undefined;
+
+console.log(foo);
+
+const numbersToFlatten = [0, 1, 2, [3, 4], 5, [6], [7], 8, [9]];
+function flatten<T>(array: (T | T[])[]): T[] {
+  const flattened: T[] = [];
+  for (const element of array) {
+    if (Array.isArray(element)) {
+      flattened.push(...element);
+    } else {
+      flattened.push(element);
+    }
+  }
+  return flattened;
+}
+
+console.log(flatten(numbersToFlatten));
+
+const stringsToFlatten = ["ab", ["on", "lk"], "pi", ["ou"], "lmv"];
+console.log(flatten(stringsToFlatten));
+
+//Custom type guard
+
+function isFlat<T>(array: (T | T[])[]): array is T[] {
+  return !array.some(Array.isArray);
+}
+
+if (isFlat(numbersToFlatten)) {
+  numbersToFlatten;
+}
+
+enum ShirtSize {
+  S,
+  M,
+  L,
+  XL
+}
+
+function assertNever(value: never): never {
+  throw new Error(`Unexpected value '$(value)'`);
+}
+
+function prettyPrint(size: ShirtSize) {
+  switch (size) {
+    case ShirtSize.S:
+      return "small";
+    case ShirtSize.M:
+      return "medium";
+    case ShirtSize.L:
+      return "large";
+    case ShirtSize.XL:
+      return "extra large";
+    default:
+      return assertNever(size);
+  }
+}

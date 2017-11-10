@@ -127,6 +127,7 @@ countdown();
 const numbers = [2, 3, 10, -1];
 console.log(Math.max(...numbers)); //Basically all array elements are spread to individual parameters
 function makeArray(name, ...args) {
+    //unknown number of params.
     return args;
 }
 console.log(makeArray("Max", 2, 4, 6));
@@ -168,7 +169,7 @@ class Car {
     constructor(name) {
         this.acceleration = 0;
         this.honk = () => console.log("Toooooooooot!");
-        this.accelerate = (speed) => this.acceleration = this.acceleration + speed;
+        this.accelerate = (speed) => (this.acceleration = this.acceleration + speed);
         this.name = name;
     }
 }
@@ -184,14 +185,12 @@ class baseObject {
         this.length = 0;
     }
 }
-;
 class Rectangle extends baseObject {
     constructor() {
         super(...arguments);
         this.calcSize = () => this.width * this.length;
     }
 }
-;
 const rectangle = new Rectangle();
 rectangle.width = 5;
 rectangle.length = 2;
@@ -213,10 +212,98 @@ class Person {
         }
     }
 }
-;
 const person = new Person();
 console.log(person.firstName); //Default blank
 person.firstName = "Ma"; //Blank
 console.log(person.firstName);
 person.firstName = "Maximilian";
 console.log(person.firstName);
+function greetPerson(person) {
+    console.log("Hello, " + person.firstName);
+}
+function changeName(person) {
+    person.firstName = "Anna";
+}
+const personArg = {
+    firstName: "Pooja",
+    hobbies: ["Cooking", "Sports"],
+    greetPerson(lastName) {
+        console.log("Hi, I am " + this.firstName + " " + lastName);
+    }
+};
+changeName(personArg);
+greetPerson(personArg);
+personArg.greetPerson("Anything");
+let myDoubleFunction;
+myDoubleFunction = function (value1, value2) {
+    return (value1 + value2) * 2;
+};
+console.log(myDoubleFunction(10, 20));
+const oldPerson = {
+    age: 27,
+    firstName: "Max",
+    greetPerson(lastName) {
+        console.log("Hello!");
+    }
+};
+function trimAndLower(text) {
+    if (!text) {
+        //this works for blank strings too
+        return text;
+    }
+    return text.trim().toLowerCase();
+}
+console.log("Trimmed to", trimAndLower(null));
+console.log("Trimmed to", trimAndLower(""));
+console.log("Trimmed to", trimAndLower("Hello guys "));
+const container = document.getElementById("app-id"); //Non null assertion. Assume that the call will not be null or undefined.
+container.remove(); //This is risky because of the non null assertion.
+let foo;
+console.log(foo);
+const numbersToFlatten = [0, 1, 2, [3, 4], 5, [6], [7], 8, [9]];
+function flatten(array) {
+    const flattened = [];
+    for (const element of array) {
+        if (Array.isArray(element)) {
+            flattened.push(...element);
+        }
+        else {
+            flattened.push(element);
+        }
+    }
+    return flattened;
+}
+console.log(flatten(numbersToFlatten));
+const stringsToFlatten = ["ab", ["on", "lk"], "pi", ["ou"], "lmv"];
+console.log(flatten(stringsToFlatten));
+//Custom type guard
+function isFlat(array) {
+    return !array.some(Array.isArray);
+}
+if (isFlat(numbersToFlatten)) {
+    numbersToFlatten;
+}
+var ShirtSize;
+(function (ShirtSize) {
+    ShirtSize[ShirtSize["S"] = 0] = "S";
+    ShirtSize[ShirtSize["M"] = 1] = "M";
+    ShirtSize[ShirtSize["L"] = 2] = "L";
+    ShirtSize[ShirtSize["XL"] = 3] = "XL";
+})(ShirtSize || (ShirtSize = {}));
+function assertNever(value) {
+    throw new Error(`Unexpected value '$(value)'`);
+}
+function prettyPrint(size) {
+    switch (size) {
+        case ShirtSize.S:
+            return "small";
+        case ShirtSize.M:
+            return "medium";
+        case ShirtSize.L:
+            return "large";
+        case ShirtSize.XL:
+            return "extra large";
+        default:
+            return assertNever(size);
+    }
+}
