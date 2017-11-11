@@ -307,3 +307,26 @@ function prettyPrint(size) {
             return assertNever(size);
     }
 }
+function reverse(stringOrArray) {
+    return typeof stringOrArray === "string" ? [...stringOrArray].reverse().join("") : stringOrArray.slice().reverse();
+}
+const reversedString = reverse("TypeScript");
+const reversedArray = reverse([4, 8, 15, 16, 23, 42]);
+//using type to contain the variable in finite values
+let autoComplete = "on";
+autoComplete = "on";
+let base;
+base = 2;
+function tryParseInt(text) {
+    if (/^[0-9]*$/.test(text)) {
+        return {
+            success: true,
+            value: parseInt(text, 10)
+        };
+    }
+    return {
+        success: false,
+        error: "Invalid number format"
+    };
+}
+console.log(tryParseInt("6"));

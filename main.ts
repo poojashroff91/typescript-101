@@ -407,3 +407,61 @@ function prettyPrint(size: ShirtSize) {
       return assertNever(size);
   }
 }
+
+
+/*
+*Reverses the given string.
+*@param string The string to reverse
+*/
+
+function reverse(string: string) : string;
+
+/*
+*Reverses the given array.
+*@param array The array to reverse. 
+*/
+function reverse<T>(array: T[]) : T[];
+
+
+function reverse(stringOrArray : string | any[]) {
+  return typeof stringOrArray === "string" ? [...stringOrArray].reverse().join("") : stringOrArray.slice().reverse();
+}
+
+const reversedString = reverse("TypeScript");
+const reversedArray  = reverse([4, 8, 15, 16, 23, 42]);
+
+
+const enum MediaTypes {
+  JSON = "application/json"
+}
+
+//using type to contain the variable in finite values
+let autoComplete: "on" | "off" | "ON" | "OFF" = "on";
+autoComplete = "on";
+//You cans treat autoComplete as a string.
+//autoComplete= "disabled"; //not allowed
+
+type NumberBase = 2 | 8 | 10 | 16;
+
+let base: NumberBase;
+base = 2;
+//base = 3; //not allowed
+
+type Result = 
+  | { success: true; value: number }
+  | { success: false; error: string };
+
+function tryParseInt(text: string): Result {
+  if(/^[0-9]*$/.test(text)){
+    return {
+      success: true,
+      value: parseInt(text, 10)
+    };
+  }
+  return {
+    success: false,
+    error: "Invalid number format"
+  };
+}
+
+console.log(tryParseInt("6"));
