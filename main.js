@@ -330,3 +330,68 @@ function tryParseInt(text) {
     };
 }
 console.log(tryParseInt("6"));
+function echo(data) {
+    console.log(data);
+}
+echo("Max");
+echo(27);
+echo({ "name": "Max", "age": 27 });
+function betterEcho(data) {
+    return data;
+}
+console.log(betterEcho("Max").length);
+console.log(betterEcho(45));
+console.log(betterEcho({ name: "Max", age: 27 }));
+const testResults1 = [1.94, 2.33];
+testResults1.push(-2.34);
+console.log(testResults1);
+//Arrays
+function printAll(args) {
+    args.forEach((element) => console.log(element));
+}
+printAll(["Apple", "Banana"]);
+//Generic types
+const echo2 = betterEcho;
+console.log(echo2("Something"));
+class SimpleMath {
+    calculate() {
+        return +this.baseValue * +this.multiplyValue;
+    }
+}
+const simpleMath = new SimpleMath();
+simpleMath.baseValue = "10";
+simpleMath.multiplyValue = 20;
+console.log(simpleMath.calculate());
+//Let's keep it simple and only add the following methods to the Map:
+class MyMap {
+    constructor() {
+        this.map = {};
+    }
+    setItem(key, item) {
+        this.map[key] = item;
+    }
+    ;
+    getItem(key) {
+        return this.map[key];
+    }
+    ;
+    clear() {
+        this.map = {};
+    }
+    ;
+    printMap() {
+        for (var key in this.map) {
+            var element = this.map[key];
+            console.log(key, element);
+        }
+    }
+    ;
+}
+const numberMap = new MyMap();
+numberMap.setItem('apples', 5);
+numberMap.setItem('bananas', 10);
+numberMap.printMap();
+const stringMap = new MyMap();
+stringMap.setItem('name', "Max");
+stringMap.setItem('age', "27");
+stringMap.printMap();
